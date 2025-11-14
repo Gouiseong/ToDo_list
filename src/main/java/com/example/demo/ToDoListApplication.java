@@ -18,7 +18,7 @@ public class ToDoListApplication {
 		boolean isRunning = true;
 		String command = "";
 		String ToDo;
-		int ToDoNumber = 1;
+
 		int ToDoIndexToDelete;
 		while (isRunning) { // 앱 실행
 							// 무한루프로 실행 시키고 종료 명령어를 입력하면 종료할 수 있도록
@@ -27,27 +27,27 @@ public class ToDoListApplication {
 			if (command.equals("추가")) {
 				System.out.print("추가할 일정 : ");
 				ToDo = sc.nextLine();
-				ToDo_list.add(ToDoNumber + ". " + ToDo);
-				ToDoNumber++;
+				ToDo_list.add(ToDo);
 				System.out.println("일정이 추가되었습니다.");
 			} else if (command.equals("수정")) {
 				System.out.print("수정할 일정 : ");
 
 			} else if (command.equals("삭제")) {
 				System.out.print("삭제할 일정의 번호를 적어주세요.");
-				ToDoIndexToDelete = sc.nextInt();
-				sc.nextLine(); // ← ★ 버퍼 비우기 (중요!)
+				ToDoIndexToDelete = sc.nextInt(); // nextInt()는 숫자만 읽고, 사용자가 친 엔터(\n)는 버퍼에 남아있기 때문에 버퍼를 비워주기 위해
+													// nextLine()함수를 넣어준다.
+				sc.nextLine(); // 버퍼 비우기
 				ToDo_list.remove(ToDoIndexToDelete - 1);
 				System.out.println(ToDoIndexToDelete + "번 일정이 삭제되었습니다.");
-				continue;
 			} else if (command.equals("목록")) {
-
 				if (ToDo_list.isEmpty()) {
 					System.out.println("목록이 비어있습니다.");
 				} else if (ToDo_list.isEmpty() != true) {
+					int ToDoNumber = 1;
 					System.out.println("해야할 일");
 					for (String ToDo1 : ToDo_list) {
-						System.out.println(ToDo1);
+						System.out.println(ToDoNumber + ". " + ToDo1);
+						ToDoNumber++;
 					}
 				}
 			} else if (command.equals("종료")) {
