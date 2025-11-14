@@ -16,10 +16,11 @@ public class ToDoListApplication {
 		Scanner sc = new Scanner(System.in);
 
 		boolean isRunning = true;
-		String command = "";
-		String ToDo;
-
-		int ToDoIndexToDelete;
+		String command = ""; // 명령어
+		String ToDo; // 일정 이름
+		String updateToDo; // 수정할 일정 이름
+		int ToDoIndexToUpdate; // 수정할 일정의 인덱스
+		int ToDoIndexToDelete; // 삭제할 일정의 인덱스
 		while (isRunning) { // 앱 실행
 							// 무한루프로 실행 시키고 종료 명령어를 입력하면 종료할 수 있도록
 			command = sc.nextLine();
@@ -30,10 +31,15 @@ public class ToDoListApplication {
 				ToDo_list.add(ToDo);
 				System.out.println("일정이 추가되었습니다.");
 			} else if (command.equals("수정")) {
-				System.out.print("수정할 일정 : ");
-
+				System.out.println("수정할 일정의 번호를 적어주세요.");
+				ToDoIndexToUpdate = sc.nextInt();
+				sc.nextLine();
+				System.out.println("수정할 문구를 적어주세요.");
+				updateToDo = sc.nextLine();
+				ToDo_list.set(ToDoIndexToUpdate - 1, updateToDo);
+				System.out.println("수정이 완료되었습니다.");
 			} else if (command.equals("삭제")) {
-				System.out.print("삭제할 일정의 번호를 적어주세요.");
+				System.out.println("삭제할 일정의 번호를 적어주세요.");
 				ToDoIndexToDelete = sc.nextInt(); // nextInt()는 숫자만 읽고, 사용자가 친 엔터(\n)는 버퍼에 남아있기 때문에 버퍼를 비워주기 위해
 													// nextLine()함수를 넣어준다.
 				sc.nextLine(); // 버퍼 비우기
