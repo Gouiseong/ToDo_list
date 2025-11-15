@@ -6,7 +6,32 @@
 </head>
 <body>
 	<h1>ToDoList</h1>
-	<button>일정 목록</button>
 
+	<input id="todoInput" type="text" placeholder="일정을 적어주세요.">
+	<button id="addButton">일정 추가</button>
+	<script>
+	document.getElementById("addButton").addEventListener("click", function() {		// getElementById("addButton") : id가 addButton인 요소를 가져옴 
+		  const todo = document.getElementById("todoInput").value;					// addEventListener : 클릭 시 이벤트 
+		  // const타입의 변수인 todo에 요소 아이디가 todoInput인 요소의 값을 저장
+		  
+		  if(!todo){
+			  alert("일정을 입력해주세요.");
+			  return;	// 입력값이 비어있으면 보내지 않음
+		  }
+
+		  fetch("http://localhost:8080/api/todo", { // 스프링 Controller URL
+		    method: "POST",                           // @PostMapping과 맞춤
+		    headers: { "Content-Type": "application/json" },
+		    body: JSON.stringify(todo)                // @RequestBody로 전송
+		  })
+		  .then(response => {
+		    if(response.ok) {
+		      alert("일정이 추가되었습니다!");
+		      document.getElementById("todoInput").value = ""; // 입력 초기화
+		    }
+		  })
+		  .catch(error => console.error(error));
+		});
+	</script>
 </body>
 </html>
