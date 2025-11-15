@@ -1,7 +1,6 @@
 package com.example.demo;
 
 import java.util.ArrayList;
-import java.util.List;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -9,6 +8,9 @@ public class ToDoService {
 	ArrayList<String> ToDo_list = new ArrayList<>();
 
 	public ArrayList<String> getAll() {
+		for (String todo : ToDo_list) {
+			System.out.println(todo);
+		}
 		return ToDo_list;
 	}
 

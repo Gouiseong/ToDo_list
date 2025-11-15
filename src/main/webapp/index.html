@@ -9,7 +9,11 @@
 
 	<input id="todoInput" type="text" placeholder="일정을 적어주세요.">
 	<button id="addButton">일정 추가</button>
+	<ul id="todolist">
+	</ul>
+	<button id="loadButton">일정 목록</button>
 	<script>
+	// 일정 추가
 	document.getElementById("addButton").addEventListener("click", function() {		// getElementById("addButton") : id가 addButton인 요소를 가져옴 
 		  const todo = document.getElementById("todoInput").value;					// addEventListener : 클릭 시 이벤트 
 		  // const타입의 변수인 todo에 요소 아이디가 todoInput인 요소의 값을 저장
@@ -32,6 +36,22 @@
 		  })
 		  .catch(error => console.error(error));
 		});
+	
+	// 일정 목록 
+	document.getElementById("loadButton").addEventListener("click",function(){
+		fetch("http://localhost:8080/api/todo")	// GET 요청
+		.then(response => response.json())	// JSON 배열로 변환
+		.then(data=>{
+			const list = document.getElementById("todoList");
+		      list.innerHTML = "";                 // 기존 목록 초기화
+		      data.forEach((todo, index) => {
+		        const li = document.createElement("li");
+		        li.textContent = `${index + 1}. ${todo}`;
+		        list.appendChild(li);
+		      });
+		})
+		.catch(error => console.error(error));
+	});
 	</script>
 </body>
 </html>
