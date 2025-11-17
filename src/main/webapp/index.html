@@ -9,9 +9,9 @@
 
 	<input id="todoInput" type="text" placeholder="일정을 적어주세요.">
 	<button id="addButton">일정 추가</button>
+	<button id="loadButton">일정 목록</button>
 	<ul id="todolist">
 	</ul>
-	<button id="loadButton">일정 목록</button>
 	<script>
 	// 일정 추가
 	document.getElementById("addButton").addEventListener("click", function() {		// getElementById("addButton") : id가 addButton인 요소를 가져옴 
@@ -42,7 +42,7 @@
 		fetch("http://localhost:8080/api/todo")	// GET 요청
 		.then(response => response.json())	// JSON 배열로 변환
 		.then(data=>{
-			const list = document.getElementById("todoList");
+			const list = document.getElementById("todolist");
 		      list.innerHTML = "";                 // 기존 목록 초기화
 		      data.forEach((todo, index) => {
 		        const li = document.createElement("li");
