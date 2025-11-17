@@ -46,8 +46,14 @@
 		      list.innerHTML = "";                 // 기존 목록 초기화
 		      data.forEach((todo, index) => {
 		        const li = document.createElement("li");
+		        const updateBtn = document.createElement("button");
+		        const deleteBtn = document.createElement("button");
 		        li.textContent = `${index + 1}. ${todo}`;
+		        updateBtn.textContent ="수정";
+		        deleteBtn.textContent ="삭제";
 		        list.appendChild(li);
+		        list.appendChild(updateBtn);
+		        list.appendChild(deleteBtn);
 		      });
 		})
 		.catch(error => console.error(error));
