@@ -17,30 +17,31 @@ public class ToDoController {
 
 	private final ToDoListApplication toDoListApplication;
 	private final ToDoService service;
-
+	
 	public ToDoController(ToDoService service, ToDoListApplication toDoListApplication) {
 		this.service = service;
 		this.toDoListApplication = toDoListApplication;
 	}
-
-	@PostMapping // 데이터를 생성하기 위한 매핑
+	
+	@PostMapping("/add") // 데이터를 생성하기 위한 매핑
 	public void ToDoAdd(@RequestBody String ToDo) { // RequestBody -> 요청 위치에서 가져온 데이터
 		ToDo = ToDo.replaceAll("\"", "");
 		service.add(ToDo);
 		System.out.println("일정 추가됨");
 	}
 
-	@DeleteMapping // 데이터를 삭제하기 위한 매핑
-	public void ToDoDelete(@PathVariable int ToDoNumber) { // PathVariable -> 요청 위치에서 가져온 대상이 지정된 데이터
+	@PostMapping("/delete/{id}") // 데이터를 삭제하기 위한 매핑
+	public void ToDoDelete(@PathVariable("id") int ToDoNumber) { // PathVariable -> 요청 위치에서 가져온 대상이 지정된 데이터
 		service.delete(ToDoNumber);
+		System.out.println("일정 삭제됨");
 	}
 
-	@PutMapping // 데이터를 수정하기 위한 매핑
+	@PutMapping("/update/{ToDoNumber}") // 데이터를 수정하기 위한 매핑
 	public void ToDoUpdate(@PathVariable int ToDoNumber, @RequestBody String ToDo) {
 		service.update(ToDoNumber, ToDo);
 	}
 
-	@GetMapping // 데이터를 조회하기 위한 매핑
+	@GetMapping("/list") // 데이터를 조회하기 위한 매핑
 	public ArrayList<String> ToDoList() {
 		System.out.println("일정 목록");
 		return service.getAll();
