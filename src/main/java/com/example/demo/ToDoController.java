@@ -36,9 +36,10 @@ public class ToDoController {
 		System.out.println("일정 삭제됨");
 	}
 
-	@PutMapping("/update/{ToDoNumber}") // 데이터를 수정하기 위한 매핑
+	@PostMapping("/update/{id}") // 데이터를 수정하기 위한 매핑
 	public void ToDoUpdate(@PathVariable int ToDoNumber, @RequestBody String ToDo) {
 		service.update(ToDoNumber, ToDo);
+		System.out.println("일정 수정됨");
 	}
 
 	@GetMapping("/list") // 데이터를 조회하기 위한 매핑

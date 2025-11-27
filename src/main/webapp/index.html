@@ -47,7 +47,20 @@
             updateBtn.textContent = "수정";
             deleteBtn.textContent = "삭제";
 
-            // 삭제 이벤트
+            // 수정 기능 추가 
+            updateBtn.addEventListener("click", function() {
+                fetch(`http://localhost:8080/api/todo/update/${todoId}`, { method: "POST" })
+                .then(response => {
+                    if(response.ok){
+                    	alert("일정이 삭제되었습니다.");
+                        li.remove();
+                        updateBtn.remove();
+                        deleteBtn.remove();
+                    }
+                });
+            });
+            
+            // 삭제 기능 추가 
             deleteBtn.addEventListener("click", function() {
                 fetch(`http://localhost:8080/api/todo/delete/${todoId}`, { method: "POST" })
                 .then(response => {
@@ -59,6 +72,8 @@
                     }
                 });
             });
+            
+            
 
             list.appendChild(li);
             list.appendChild(updateBtn);
