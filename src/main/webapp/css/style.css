@@ -15,12 +15,17 @@ body {
 	border: 1px solid #000;
 }
 
-.left-box{
-	width:300px;
-	background-color: green;	
+.left-box {
+	width: 300px;
+	background-color: green;
 }
 
-.right-box{
-	width:300px;
+.right-box {
+	width: 300px;
 	background-color: red;
+}
+
+#emptylist {
+	display: block;
+	color: gray;
 }
