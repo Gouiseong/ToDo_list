@@ -17,12 +17,12 @@ public class ToDoController {
 
 	private final ToDoListApplication toDoListApplication;
 	private final ToDoService service;
-	
+
 	public ToDoController(ToDoService service, ToDoListApplication toDoListApplication) {
 		this.service = service;
 		this.toDoListApplication = toDoListApplication;
 	}
-	
+
 	@PostMapping("/add") // 데이터를 생성하기 위한 매핑
 	public void ToDoAdd(@RequestBody String ToDo) { // RequestBody -> 요청 위치에서 가져온 데이터
 		ToDo = ToDo.replaceAll("\"", "");

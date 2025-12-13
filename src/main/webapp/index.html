@@ -3,16 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <title>ToDoList</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 	<h1>ToDoList</h1>
+	<div class="container">
+		<div class="left-box">왼쪽</div>
+		<div class="box">
+			가운데 <input id="todoInput" type="text" placeholder="일정을 적어주세요.">
+			<button id="addButton">일정 추가</button>
+			<button id="loadButton">일정 목록</button>
+			<ul id="todolist">
+				<p id="emptylist">일정이 비어있습니다.</p>
+			</ul>
+		</div>
+		<div class="right-box">오른쪽</div>
+	</div>
 
-	<input id="todoInput" type="text" placeholder="일정을 적어주세요.">
-	<button id="addButton">일정 추가</button>
-	<button id="loadButton">일정 목록</button>
-	<ul id="todolist">
-		<p id="emptylist">일정이 비어있습니다.</p>
-	</ul>
+	<input>
+	<button>로그인</button>
 	<script>
 	// 일정 추가
 	document.getElementById("addButton").addEventListener("click", function() {
